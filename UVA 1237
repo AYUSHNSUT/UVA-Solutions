@@ -1,0 +1,116 @@
+/*
+Main takeaways:
+Used a map of string and pairs and how to iterate through them
+Had a presentation error that was fixed by a neat and obvious trick which i had to look up
+*/
+
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define DEBUG(x) cout << '>' << #x << ':' << x << endl;
+#define REP(i,n) for(int i=0;i<(n);i++)
+#define FOR(i,a,b) for(int i=(a);i<=(b);i++)
+#define FORD(i,a,b) for(int i=(a);i>=(b);i--)
+#define all(c) c.begin(),c.end()
+
+#define M 1000000007
+
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef pair<string, string> pss;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define mp make_pair
+#define pb push_back
+
+inline bool EQ(double a, double b) { return fabs(a-b) < 1e-9; }
+const int INF = 1<<29;
+inline int two(int n) { return 1 << n; }
+inline int test(int n, int b) { return (n>>b)&1; }
+inline void set_bit(int & n, int b) { n |= two(b); }
+inline void unset_bit(int & n, int b) { n &= ~two(b); }
+inline int last_bit(int n) { return n & (-n); }
+inline int ones(int n) { int res = 0; while(n && ++res) n-=n&(-n); return res; }
+template<class T> void chmax(T & a, const T & b) { a = max(a, b); }
+template<class T> void chmin(T & a, const T & b) { a = min(a, b); }
+/////////////////////////////////////////////////////////////////////
+int main()
+{
+    //ofstream fout;
+    // ifstream fin;
+//	fout.open("OUTPUT.txt",ios::out);
+//	fin.open("INPUT.txt",ios::in);
+    std::ios::sync_with_stdio(false);
+
+
+
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+
+       map <string , pll> data;
+       ll n;
+       cin >> n;
+        REP (i,n)
+        {
+            string tempstring;
+            ll templow , temphigh;
+            cin >> tempstring;
+            cin >> templow >> temphigh;
+            data[tempstring] = mp(templow,temphigh);
+
+        }
+
+        ll q;
+        cin >> q;
+
+        REP(i,q)
+        {
+            ll solns  = 0;
+            string tempstring;
+            ll p;
+            cin >> p;
+            for(auto it  = data.begin();it!=data.end();it++)
+            {
+                ll lowval = it->second.first;
+                ll highval = it->second.second;
+
+                if(p>=lowval && p<=highval)
+                {
+                    solns++;
+                    tempstring = it->first;
+                }
+            }
+
+
+
+            if(solns == 1)
+            {
+                cout << tempstring << endl;
+            }
+            else
+                cout <<"UNDETERMINED" << endl;
+        }
+
+        if(t)
+            cout << endl;
+
+
+
+    }
+
+//fout.close();
+//fin.close();
+    return 0;
+}
